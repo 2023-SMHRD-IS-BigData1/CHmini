@@ -2,12 +2,14 @@ package View;
 
 import java.util.Scanner;
 
+import Controller.PokerController;
+import Model.PokerPlayer;
+
 public class PokerMain {
 
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		//id, pw, name
 		
 		while(true) {
 			
@@ -21,6 +23,19 @@ public class PokerMain {
 				
 				
 			}else if (num ==2) {
+				
+				System.out.print("ID >> ");
+				String id = sc.next();
+				System.out.print("PW >> ");
+				String pw = sc.next();
+				System.out.print("NAME >> ");
+				String name = sc.next();
+
+				PokerPlayer playerdto = new PokerPlayer(id, pw, name,0);
+
+				PokerController conn = new PokerController();
+
+				conn.insert(playerdto);
 				
 			}else if (num ==3) {
 				
