@@ -24,13 +24,16 @@ public class PokerMain {
 				
 			}else if (num ==3) {
 				
+				
+				
+				
 			}else if(num== 4) {
 				System.out.println("종료");
 				break;
 			}else {
 				System.out.println("다시입력해주세요");
 			}
-			
+		
 			
 			
 			
