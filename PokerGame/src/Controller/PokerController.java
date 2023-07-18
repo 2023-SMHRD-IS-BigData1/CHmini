@@ -1,10 +1,14 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import Model.PokerDAO;
 import Model.PokerPlayer;
 
 public class PokerController {
+	
 	PokerDAO dao = new PokerDAO();
+	
 	int cnt = 0;	
 	
 	public void insert(PokerPlayer playerdto) {
@@ -16,5 +20,27 @@ public class PokerController {
 		} else {
 			System.out.println("회원가입에 실패했습니다. 다시 시도하세요.");
 		}
+	}
+	
+	// 포커 조회하기 - 박수완
+	
+	public void conranking() {
+
+		   ArrayList<PokerPlayer> list = dao.ranking();
+
+		   		for(int i = 0 ; i < list.size(); i++) {
+					String id = list.get(i).getId();
+					String name = list.get(i).getName();
+					int chip = list.get(i).getChip();
+					
+					System.out.println(i+1+"등 ID : " + id + " 닉네임 : " + name + " 보유 칩 : " + chip);
+				
+			
+					
+					
+		   		}
+
+
+
 	}
 }

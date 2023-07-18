@@ -10,6 +10,9 @@ public class PokerMain {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
+		PokerController con = new PokerController();
+		
+		
 		
 		while(true) {
 			
@@ -19,10 +22,10 @@ public class PokerMain {
 			if(num == 1) {
 
 				
+			
 				
 				
-				
-			}else if (num ==2) {
+			}else if (num == 2) {
 				
 				System.out.print("ID >> ");
 				String id = sc.next();
@@ -37,12 +40,12 @@ public class PokerMain {
 
 				conn.insert(playerdto);
 				
-			}else if (num ==3) {
+			}else if (num == 3) {
+				
+				con.conranking();
 				
 				
-				
-				
-			}else if(num== 4) {
+			}else if(num == 4) {
 				System.out.println("종료");
 				break;
 			}else {
