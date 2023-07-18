@@ -30,7 +30,7 @@ public class PokerMain {
 			}else {
 				System.out.println("다시입력해주세요");
 			}
-			
+		
 			
 			
 			
