@@ -24,6 +24,9 @@ public class PokerMain {
 				
 			}else if (num ==3) {
 				
+				
+				
+				
 			}else if(num== 4) {
 				System.out.println("종료");
 				break;
