@@ -2,8 +2,8 @@ package Model;
 
 public class PokerDealer {
 
-	int chip = 10000;
-	String name = "Dealer";
+	private int chip = 10000;
+	private String name = "Dealer";
 	
 	
 	public int getChip() {//getter/setter
