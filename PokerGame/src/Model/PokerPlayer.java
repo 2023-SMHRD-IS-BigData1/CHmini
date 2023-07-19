@@ -17,6 +17,14 @@ public class PokerPlayer {
 		this.name = name;
 		this.chip = chip;
 	}
+	
+	public PokerPlayer( String id, String pw, String name) {
+		super();
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+	}
+	
 
 
 	public PokerPlayer(int beting_chip) {
