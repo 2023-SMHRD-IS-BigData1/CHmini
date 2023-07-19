@@ -10,6 +10,7 @@ public class Deck {
 	
 	public static void main(String[] args) {
 
+		Method method = new Method();
 		ArrayList<Card> cards = new ArrayList<Card>();//Card자료형의 Arraylist
 		
 		String[] cardPattern = { "♠" , "♥", "♦", "♣"};//4개의 패턴
@@ -36,10 +37,13 @@ public class Deck {
 				cards.add(card);
 			}
 		}
-
-
-		System.out.print(cards.get(0).getPattern());
-		System.out.print(cards.get(0).getNumber());
+		method.getCards(cards);
 		
+		method.dealDealer5();
+		
+		
+		
+
+
 	}
 }
