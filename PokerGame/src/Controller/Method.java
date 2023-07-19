@@ -89,8 +89,75 @@ public class Method {
 	}
 
 // 2. 가진 칩 이하의 칩을 배팅하는 메소드 ( 플레이어만, 딜러는 계속 따라옴 )
+	
+	// pot이란 메소드
+		public int pot(int beting_chip) { 
+			PokerPlayer p_player = new PokerPlayer(beting_chip);
+			PokerDealer p_dealer = new PokerDealer();
+			p_player.setChip(p_player.getChip()-1); // 플레이어칩 -1
+			p_dealer.setChip(p_dealer.getChip()-1); // 딜러칩 -1
+			int pot = p_player.getBeting_chip()*2;
+			return pot;
+			// 추후에 우열을 가려서 승자에게 pot을 지급하면 됨.
+		}
 
 // 3. 가진 카드에 한장씩을 추가해 주는 메소드
+		
+		public ArrayList<Card> dealPlayer1() { //플레이어에게 1장
+			
+			while (true) {
+				playerHand.add(cards.get(rd.nextInt(52)));
+				int count = playerHand.size();
+				HashSet<Card> hs = new HashSet<Card>(playerHand);
+				playerHand.clear();
+				playerHand.addAll(hs);
+				
+				for (int j = 0; j < dealerHand.size(); j++) { // 가장 최근 추가된 값이 딜러 패와 중복이라면 지우는 코드.
+					if (playerHand.get(playerHand.size() - 1).equals(dealerHand.get(j))) {
+						playerHand.remove(playerHand.size() - 1);
+					}
+				}
+				
+				if (playerHand.size() == count) { //1장 추가된 상태 그대로라면 break
+					break;
+				}
+			}
+			for (int i = 0; i < playerHand.size(); i++) {  
+				System.out.print(playerHand.get(i).getNumber());
+				System.out.println(playerHand.get(i).getPattern());
+			}
+			System.out.println("==========플레이어==========");
+			return playerHand;
+			
+		}
+		
+		public ArrayList<Card> dealDealer1() { //딜러에게 1장
+			
+			while (true) {
+				dealerHand.add(cards.get(rd.nextInt(52)));
+				int count = dealerHand.size();
+				HashSet<Card> hs = new HashSet<Card>(dealerHand);
+				dealerHand.clear();
+				dealerHand.addAll(hs);
+				
+				for (int j = 0; j < playerHand.size(); j++) { // 가장 최근 추가된 값이 플레이어 패와 중복이라면 지우는 코드.
+					if (dealerHand.get(dealerHand.size() - 1).equals(playerHand.get(j))) {
+						dealerHand.remove(dealerHand.size() - 1);
+					}
+				}
+				
+				if (dealerHand.size() == count) { //1장 추가된 상태 그대로라면 break
+					break;
+				}
+			}
+			for (int i = 0; i < playerHand.size(); i++) { 
+				System.out.print(dealerHand.get(i).getNumber());
+				System.out.println(dealerHand.get(i).getPattern());
+			}
+			System.out.println("==========딜러==========");
+
+			return dealerHand;
+		}
 
 // 4. 받은 카드의 족보를 확인하는 메소드
 	
@@ -135,16 +202,7 @@ public class Method {
 		
 	}
 	
-// pot이란 메소드
-	public int pot(int beting_chip) { 
-		PokerPlayer p_player = new PokerPlayer(beting_chip);
-		PokerDealer p_dealer = new PokerDealer();
-		p_player.setChip(p_player.getChip()-1); // 플레이어칩 -1
-		p_dealer.setChip(p_dealer.getChip()-1); // 딜러칩 -1
-		int pot = p_player.getBeting_chip()*2;
-		return pot;
-		// 추후에 우열을 가려서 승자에게 pot을 지급하면 됨.
-	}
+
 	
 // 5. 족보의 우열을 판단해 승자를 정하는 메소드
 
