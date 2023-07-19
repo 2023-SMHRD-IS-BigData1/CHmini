@@ -16,6 +16,7 @@ public class PokerDAO {
 	String data = "";
 	PokerPlayer dto = null;
 
+
 	// getCon : DB에 연결권한 확인
 	public void getCon() {
 		try {
@@ -102,8 +103,30 @@ public class PokerDAO {
 		return cnt;
 	}
 	
-	
-	public void upload() {
+	// 게임 종료후 칩을 받아 데이터베이스에 저장
+	public void upload(int chip) {
+		
+		getCon();
+		
+		try {
+			String sql = "UPDATE MEMBERS SET CHIP = ? WHERE ID = ?";
+
+			psmt = conn.prepareStatement(sql);
+
+			psmt.setInt(1,chip);
+			psmt.setString(1,dto.getName());
+			
+		
+
+			rs = psmt.executeQuery();
+
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
 		
 		
 	}
