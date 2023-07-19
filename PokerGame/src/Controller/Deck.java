@@ -39,7 +39,8 @@ public class Deck {
 		}
 		method.getCards(cards);
 		
-		method.dealDealer5();
+//		method.dealPlayer5(); 출력 실험
+//		method.dealDealer5();
 		
 		
 		
