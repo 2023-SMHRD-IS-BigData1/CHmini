@@ -14,10 +14,11 @@ public class PokerMain {
 		PokerController con = new PokerController();
 		Method method = new Method();
 		
-		
+	
 		
 		while(true) {
-			
+	
+	
 			System.out.print("[1] 로그인 [2] 회원가입 [3]랭킹 [4]종료 >> ");
 			int num = sc.nextInt();
 			
@@ -35,11 +36,39 @@ public class PokerMain {
 
 				String name = conn.select(playerdto);
 
-				//
+				//로고
+				
+				while (true) {
+					System.out.println("============MINI POKER============");
+					System.out.print("[1] 시작 [2] 설명 [3]로그인 화면으로");
+					int select = sc.nextInt();
+					
+					if (select == 1) {
+						
+					}else if (select == 2) {
+						System.out.println("설명");
+					}else if (select == 3) {
+						break;
+					}
+					
+					
+					
+				}
+
+				
+				
+
+				
+				
+				
+				
+				
+				
+				
 
 				//
 
-				break;
+
 			}else if (num == 2) {
 				
 				System.out.print("ID >> ");
