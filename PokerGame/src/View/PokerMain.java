@@ -44,13 +44,27 @@ public class PokerMain {
 				
 				System.out.print("ID >> ");
 				String id = sc.next();
+				
+				if(id.equals(id)) {
+					System.out.println("아이디 중복! 다시 입력해주세요");
+					System.out.print("ID >> ");
+					id = sc.next();
+				}
+				
 				System.out.print("PW >> ");
 				String pw = sc.next();
+				
 				System.out.print("NAME >> ");
 				String name = sc.next();
+				
+				if(name.equals(name)) {
+					System.out.println("닉네임 중복! 다시 입력해주세요");
+					System.out.print("NAME >> ");
+					name = sc.next();
+				}
 
 				PokerPlayer playerdto = new PokerPlayer(id, pw, name,0);
-				method.getInputName(name);
+
 				PokerController conn = new PokerController();
 
 				conn.insert(playerdto);

@@ -264,5 +264,10 @@ public ArrayList<Card> dealPlayer1() { //플레이어에게 1장
 
 	
 // 5. 족보의 우열을 판단해 승자를 정하는 메소드
+	
+	
+	
+	
+	
 
 }
