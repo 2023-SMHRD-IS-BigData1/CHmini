@@ -1,8 +1,13 @@
 package Controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Random;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import Model.Card;
 import Model.PokerDealer;
@@ -176,7 +181,7 @@ public class Method {
 
 // 4. 받은 카드의 족보를 확인하는 메소드
 
-	public void checkTree(ArrayList<Card> hand) {
+	public String checkTree(ArrayList<Card> hand) {
 		ArrayList<Integer> tempNum = new ArrayList<Integer>(); // 패에서 숫자를 분리한 임시 리스트
 		ArrayList<String> tempPattern = new ArrayList<String>(); // 패에서 모양을 분리한 임시 리스트
 		for (int i = 0; i < hand.size(); i++) {
@@ -214,8 +219,130 @@ public class Method {
 			tempPattern.add(hand.get(i).getPattern());
 		}
 
+		// 우선순위에 따라 정렬
+		Collections.sort(tempNum);
+
+		// 플러시 여부 체크
+		boolean isFlush = tempPattern.stream().distinct().count() == 1;
+
+		// 스트레이트 여부 체크
+		boolean isStraight = true;
+		for (int i = 1; i < tempNum.size(); i++) {
+			if (tempNum.get(i) != tempNum.get(i - 1) + 1) {
+				isStraight = false;
+				break;
+			}
+		}
+
+		// 우선순위에 따라 패 판단
+		if (isFlush && isStraight) {
+			// 패턴이 모두 같고 연속된 숫자인 경우: 스트레이트 플러쉬
+			if (tempNum.contains(1) && tempNum.contains(10) && tempNum.contains(11) && tempNum.contains(12)
+					&& tempNum.contains(13)) {
+				// 10, J, Q, K, A로 구성된 경우: 로얄 플러쉬
+				return "로얄 플러쉬";
+			} else {
+				return "스트레이트 플러쉬";
+			}
+		} else if (isFlush) {
+			// 패턴이 모두 같은 경우: 플러쉬
+			return "플러쉬";
+		} else if (isStraight) {
+			// 연속된 숫자인 경우: 스트레이트
+			return "스트레이트";
+		} else {
+			// 동일한 숫자의 개수를 체크하여 판단
+			Map<Integer, Long> numCountMap = tempNum.stream()
+					.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+			if (numCountMap.containsValue(4L)) {
+				// 동일한 숫자가 4장인 경우: 포카드
+				return "포카드";
+			} else if (numCountMap.containsValue(3L) && numCountMap.containsValue(2L)) {
+				// 동일한 숫자가 3장과 2장인 경우: 풀하우스
+				return "풀하우스";
+			} else if (numCountMap.containsValue(3L)) {
+				// 동일한 숫자가 3장인 경우: 트리플
+				return "트리플";
+			} else if (numCountMap.containsValue(2L)) {
+				long numOfPairs = numCountMap.values().stream().filter(count -> count == 2L).count();
+				if (numOfPairs == 2) {
+					// 동일한 숫자가 2장인 경우가 2개: 투페어
+					return "투페어";
+				} else {
+					// 동일한 숫자가 2장인 경우가 1개: 원페어
+					return "원페어";
+				}
+			} else {
+				// 위의 모든 경우에 해당하지 않는 경우: 하이카드
+				return "하이카드";
+			}
+		}
 	}
 
 // 5. 족보의 우열을 판단해 승자를 정하는 메소드
 
+	// 메인 탭에서 족보가 출력되면 그 족보를 받아와서 판별만 해주면 됨.
+	// 대신 플레이어의 족보를 받아오는 것과 딜러의 족보를 각각받아와
+	// 어떤 게 더 우열이 높은지를 판단해야함.
+
+	public void result(String player_result, String dealer_result) {
+		
+		int player_point;
+		int dealer_point;
+		
+		if (player_result.equals("로열플래쉬")) {// 플레이어의 패에 따른 포인트 부여
+			player_point = 10;
+		}else if(player_result.equals("스트레이트 플러쉬")) {
+			player_point = 9;
+		}else if(player_result.equals("포카드")) {
+			player_point = 8;
+		}else if(player_result.equals("풀하우스")) {
+			player_point = 7;
+		}else if(player_result.equals("플러쉬")) {
+			player_point = 6;
+		}else if(player_result.equals("스트레이트")) {
+			player_point = 5;
+		}else if(player_result.equals("트리플")) {
+			player_point = 4;
+		}else if(player_result.equals("투페어")) {
+			player_point = 3;
+		}else if(player_result.equals("원페어")) {
+			player_point = 2;
+		}else {
+			player_point = 1;
+		}
+		
+		if (dealer_result.equals("로열플래쉬")) {// 딜러의 패에 따른 포인트 부여
+			dealer_point = 10;
+		}else if(dealer_result.equals("스트레이트 플러쉬")) {
+			dealer_point = 9;
+		}else if(dealer_result.equals("포카드")) {
+			dealer_point = 8;
+		}else if(dealer_result.equals("풀하우스")) {
+			dealer_point = 7;
+		}else if(dealer_result.equals("플러쉬")) {
+			dealer_point = 6;
+		}else if(dealer_result.equals("스트레이트")) {
+			dealer_point = 5;
+		}else if(dealer_result.equals("트리플")) {
+			dealer_point = 4;
+		}else if(dealer_result.equals("투페어")) {
+			dealer_point = 3;
+		}else if(dealer_result.equals("원페어")) {
+			dealer_point = 2;
+		}else {
+			dealer_point = 1;
+		}
+		
+		// 플레어와 딜러의 우열가리고 출력하기.
+		if(player_point > dealer_point) {
+			System.out.println("플레이어 승리!");
+		}else if(player_point < dealer_point) {
+			System.out.println("플레이어 패배..");
+		}else {
+			System.out.println("무승부");
+		}
+		
+	}
 }
