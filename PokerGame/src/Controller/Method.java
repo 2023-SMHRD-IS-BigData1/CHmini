@@ -41,6 +41,7 @@ public class Method {
 		}
 	}
 
+	
 	public void getPlayerChips(int a) {
 		playerchip = a;
 	}
