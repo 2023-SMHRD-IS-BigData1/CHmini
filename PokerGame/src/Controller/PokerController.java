@@ -11,6 +11,23 @@ public class PokerController {
 	
 	int cnt = 0;	
 	
+	// 로그인	
+		public String select(PokerPlayer playerdto) {
+			
+			String data = dao.select(playerdto);
+			
+			if (data.equals("")) {
+				System.out.println("로그인 실패");
+			} else {
+				System.out.println("로그인 성공!");
+				
+				System.out.println( data + "님 환영합니다!");
+				
+			}
+			return data;
+		}
+		
+	// 회원가입	
 	public void insert(PokerPlayer playerdto) {
 
 		cnt = dao.insert(playerdto);

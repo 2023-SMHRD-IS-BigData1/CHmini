@@ -48,6 +48,35 @@ public class PokerDAO {
 
 				}	
 				
+				// 로그인
+				public String select(PokerPlayer playerdto) {
+
+					getCon();
+
+					String name = "";
+					try {
+						String sql = "SELECT * FROM MEMBERS WHERE ID = ? AND PW = ?";
+
+						psmt = conn.prepareStatement(sql);
+
+						psmt.setString(1, playerdto.getId());
+						psmt.setString(2, playerdto.getPw());
+
+						rs = psmt.executeQuery();
+
+						if (rs.next()) {
+							name = rs.getString(3);
+							data += name;
+						}
+					} catch (SQLException e) {
+						e.printStackTrace();
+					} finally {
+						getClose();
+					}
+
+					return data;
+				}
+				
 			// 회원가입후 insert 하는 메서드
 			public int insert(PokerPlayer playerdto) {
 				getCon();

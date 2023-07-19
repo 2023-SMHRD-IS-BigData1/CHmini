@@ -21,10 +21,23 @@ public class PokerMain {
 			
 			if(num == 1) {
 
-				
-			
-				
-				
+				System.out.println("====로그인====");
+				System.out.print("ID >> ");
+				String id = sc.next();
+				System.out.print("PW >> ");
+				String pw = sc.next();
+
+				PokerPlayer playerdto = new PokerPlayer(id, pw, null, 0);
+
+				PokerController conn = new PokerController();
+
+				String name = conn.select(playerdto);
+
+				//
+
+				//
+
+				break;
 			}else if (num == 2) {
 				
 				System.out.print("ID >> ");
