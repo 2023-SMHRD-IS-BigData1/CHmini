@@ -6,7 +6,10 @@ public class PokerPlayer {
 	private String name; // 이름은 View에 회원가입 시의 이름이다.
 	private String id;
 	private String pw;
+	private int beting_chip;
 	
+
+
 	public PokerPlayer( String id, String pw, String name, int chip) {
 		super();
 		this.id = id;
@@ -15,6 +18,15 @@ public class PokerPlayer {
 		this.chip = chip;
 	}
 
+
+	public PokerPlayer(int beting_chip) {
+		super();
+		this.beting_chip = beting_chip;
+	}
+
+	public int getBeting_chip() {
+		return beting_chip;
+	}
 
 	public int getChip() {
 		return chip;

@@ -135,6 +135,17 @@ public class Method {
 		
 	}
 	
+// pot이란 메소드
+	public int pot(int beting_chip) { 
+		PokerPlayer p_player = new PokerPlayer(beting_chip);
+		PokerDealer p_dealer = new PokerDealer();
+		p_player.setChip(p_player.getChip()-1); // 플레이어칩 -1
+		p_dealer.setChip(p_dealer.getChip()-1); // 딜러칩 -1
+		int pot = p_player.getBeting_chip()*2;
+		return pot;
+		// 추후에 우열을 가려서 승자에게 pot을 지급하면 됨.
+	}
+	
 // 5. 족보의 우열을 판단해 승자를 정하는 메소드
 
 }
