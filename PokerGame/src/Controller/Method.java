@@ -120,6 +120,10 @@ public class Method {
 		return pot;
 		// 추후에 우열을 가려서 승자에게 pot을 지급하면 됨.
 	}
+	
+	public void potReset() {
+		pot = 0;
+	}
 
 // 3. 가진 카드에 한장씩을 추가해 주는 메소드
 
@@ -286,7 +290,7 @@ public class Method {
 	// 대신 플레이어의 족보를 받아오는 것과 딜러의 족보를 각각받아와
 	// 어떤 게 더 우열이 높은지를 판단해야함.
 
-	public void result(String player_result, String dealer_result) {
+	public int result(String player_result, String dealer_result) {
 		
 		int player_point;
 		int dealer_point;
@@ -337,11 +341,11 @@ public class Method {
 		
 		// 플레어와 딜러의 우열가리고 출력하기.
 		if(player_point > dealer_point) {
-			System.out.println("플레이어 승리!");
+			return 1;
 		}else if(player_point < dealer_point) {
-			System.out.println("플레이어 패배..");
+			return 2;
 		}else {
-			System.out.println("무승부");
+			return 3;
 		}
 		
 	}

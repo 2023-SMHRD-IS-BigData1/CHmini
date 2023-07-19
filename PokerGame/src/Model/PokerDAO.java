@@ -8,133 +8,138 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PokerDAO {
-	//전역변수 설정
+	// 전역변수 설정
 	Connection conn = null;
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
 	int cnt = 0;
 	String data = "";
 	PokerPlayer dto = null;
-			
-			// getCon : DB에 연결권한 확인
-				public void getCon() {
-					try {
-						Class.forName("oracle.jdbc.driver.OracleDriver");
 
-						String url = "jdbc:oracle:thin:@project-db-campus.smhrd.com:1524:xe";
-						String db_id = "campus_e_0718_4";
-						String db_pw = "smhrd4";
+	// getCon : DB에 연결권한 확인
+	public void getCon() {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-						conn = DriverManager.getConnection(url, db_id, db_pw);
+			String url = "jdbc:oracle:thin:@project-db-campus.smhrd.com:1524:xe";
+			String db_id = "campus_e_0718_4";
+			String db_pw = "smhrd4";
 
-					} catch (ClassNotFoundException | SQLException e) {
-						e.printStackTrace();
-					}
-				}
-				
-			// getClose : DB 자원 반납하는 매서드 (기능)
-				public void getClose() {
+			conn = DriverManager.getConnection(url, db_id, db_pw);
 
-					try {
-						if (rs != null)
-							rs.close();
-						if (psmt != null)
-							psmt.close();
-						if (conn != null)
-							conn.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
-				}	
-				
-				// 로그인
-				public String select(PokerPlayer playerdto) {
+	// getClose : DB 자원 반납하는 매서드 (기능)
+	public void getClose() {
 
-					getCon();
+		try {
+			if (rs != null)
+				rs.close();
+			if (psmt != null)
+				psmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-					String name = "";
-					try {
-						String sql = "SELECT * FROM MEMBERS WHERE ID = ? AND PW = ?";
+	}
 
-						psmt = conn.prepareStatement(sql);
+	// 로그인
+	public String select(PokerPlayer playerdto) {
 
-						psmt.setString(1, playerdto.getId());
-						psmt.setString(2, playerdto.getPw());
+		getCon();
 
-						rs = psmt.executeQuery();
+		String name = "";
+		try {
+			String sql = "SELECT * FROM MEMBERS WHERE ID = ? AND PW = ?";
 
-						if (rs.next()) {
-							name = rs.getString(3);
-							data += name;
-						}
-					} catch (SQLException e) {
-						e.printStackTrace();
-					} finally {
-						getClose();
-					}
+			psmt = conn.prepareStatement(sql);
 
-					return data;
-				}
-				
-			// 회원가입후 insert 하는 메서드
-			public int insert(PokerPlayer playerdto) {
-				getCon();
-				
-			 	String sql = "insert into members values(?,?,?,?)";
+			psmt.setString(1, playerdto.getId());
+			psmt.setString(2, playerdto.getPw());
 
-				try {
-					psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
 
-					psmt.setString(1, playerdto.getId() );
-					psmt.setString(2, playerdto.getPw() );
-					psmt.setString(3, playerdto.getName() );
-					psmt.setInt(4, playerdto.getChip() );
-					
-					cnt = psmt.executeUpdate();
-
-				} catch (SQLException e) {
-					e.printStackTrace();
-				} finally {
-					getClose();
-				}
-
-				return cnt;
+			if (rs.next()) {
+				name = rs.getString(3);
+				data += name;
 			}
-			// 랭킹출력 - 박수완
-			
-			
-						public ArrayList<PokerPlayer> ranking() {
-						
-							getCon();
-							ArrayList<PokerPlayer> list = new ArrayList<PokerPlayer>();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
 
-							String sql = "SELECT * FROM MEMBERS ORDER BY CHIP DESC";
-							try {
-								psmt = conn.prepareStatement(sql);
+		return data;
+	}
 
-								rs = psmt.executeQuery();
-								 
-								 while (rs.next()) {
+	// 회원가입후 insert 하는 메서드
+	public int insert(PokerPlayer playerdto) {
+		getCon();
 
-									String id = rs.getString(1);
-									String name = rs.getString(3);
-									int chip = rs.getInt(4);
-									 
-									 dto = new PokerPlayer(id, null, name, chip);
-								
-									 list.add(dto);
-										
-										
+		String sql = "insert into members values(?,?,?,?)";
 
-									}
+		try {
+			psmt = conn.prepareStatement(sql);
 
-							} catch (SQLException e) {
-								System.out.println("SQL문 오류");
-							} finally {
-								getClose();
-							}
+			psmt.setString(1, playerdto.getId());
+			psmt.setString(2, playerdto.getPw());
+			psmt.setString(3, playerdto.getName());
+			psmt.setInt(4, playerdto.getChip());
 
-							return list;
-						}
+			cnt = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			getClose();
+		}
+
+		return cnt;
+	}
+	
+	
+	public void upload() {
+		
+		
+	}
+
+	
+	// 랭킹출력 - 박수완
+
+	public ArrayList<PokerPlayer> ranking() {
+
+		getCon();
+		ArrayList<PokerPlayer> list = new ArrayList<PokerPlayer>();
+
+		String sql = "SELECT * FROM MEMBERS ORDER BY CHIP DESC";
+		try {
+			psmt = conn.prepareStatement(sql);
+
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+
+				String id = rs.getString(1);
+				String name = rs.getString(3);
+				int chip = rs.getInt(4);
+
+				dto = new PokerPlayer(id, null, name, chip);
+
+				list.add(dto);
+
+			}
+
+		} catch (SQLException e) {
+			System.out.println("SQL문 오류");
+		} finally {
+			getClose();
+		}
+
+		return list;
+	}
 }

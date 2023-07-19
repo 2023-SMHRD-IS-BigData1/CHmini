@@ -80,6 +80,7 @@ public class PokerMain {
 					System.out.println("============MINI POKER============");
 					System.out.print("[1] 시작 [2] 설명 [3]로그인 화면으로  >>  ");
 					int select = sc.nextInt();
+					int round = 1;
 					
 					if (select == 1) {
 					
@@ -94,7 +95,7 @@ public class PokerMain {
 							System.out.println();
 							System.out.println("==============DEALER===============");
 							System.out.println();
-							System.out.println("                        V                 S       pot : " + method.pot(1) + "                ");
+							System.out.println("라운드  :  " + round + "        V                 S       pot : " + method.pot(1) + "                ");
 							System.out.println();
 							System.out.println("==============PLAYER================");
 							System.out.println();
@@ -125,7 +126,7 @@ public class PokerMain {
 									System.out.println();
 									System.out.println("==============DEALER===============");
 									System.out.println();
-									System.out.println("                        V                 S       pot : " + method.pot(0) + "                ");
+									System.out.println("라운드  :  " + round + "        V                 S       pot : " + method.pot(0) + "                ");
 									System.out.println();
 									System.out.println("==============PLAYER================");
 									System.out.println();
@@ -156,7 +157,7 @@ public class PokerMain {
 										System.out.println();
 										System.out.println("==============DEALER===============");
 										System.out.println();
-										System.out.println("                        V                 S       pot : " + method.pot(0) + "                ");
+										System.out.println("라운드  :  " + round + "        V                 S       pot : " + method.pot(0) + "                ");
 										System.out.println();
 										System.out.println("==============PLAYER================");
 										System.out.println();
@@ -165,6 +166,33 @@ public class PokerMain {
 											System.out.print(playerHand.get(i).getPattern() + playerHand.get(i).getNumber() + "  ");
 										}
 										System.out.println();
+										
+										System.out.println("딜러  :  " + method.checkTree(dealerHand));
+										System.out.println("플레이어  :  " + method.checkTree(playerHand));
+										
+										int result = method.result(method.checkTree(playerHand), method.checkTree(dealerHand));
+
+										if (result == 1) {
+											System.out.println("플레이어 승리!");
+											playerChip += method.pot(0);
+											method.potReset();
+										}else if (result == 2) {
+											System.out.println("플레이어 패배...");
+											dealerChip += method.pot(0);
+											method.potReset();
+										}else {
+											System.out.println("무승부");
+											System.out.println("pot의 칩은 다음 승부로 이전됩니다.");
+											if (round == 5) {
+												System.out.println("마지막 라운드이므로 pot의 칩은 균등 분배됩니다.");
+												playerChip += (method.pot(0) / 2) + (method.pot(0) % 2);
+												dealerChip += (method.pot(0) / 2) + (method.pot(0) % 2);
+											}
+										}
+										
+										playerHand.clear();
+										dealerHand.clear();
+										
 										
 										break;
 										
@@ -194,7 +222,10 @@ public class PokerMain {
 						break;
 					}
 					
-					
+					if (round == 5) {
+						System.out.println("랭킹 서버에 점수가 등록됩니다.");
+						
+					}
 					
 				}
 				//

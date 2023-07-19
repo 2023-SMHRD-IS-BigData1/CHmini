@@ -6,28 +6,28 @@ import Model.PokerDAO;
 import Model.PokerPlayer;
 
 public class PokerController {
-	
+
 	PokerDAO dao = new PokerDAO();
-	
-	int cnt = 0;	
-	
-	// 로그인	
-		public String select(PokerPlayer playerdto) {
-			
-			String data = dao.select(playerdto);
-			
-			if (data.equals("")) {
-				System.out.println("로그인 실패");
-			} else {
-				System.out.println("로그인 성공!");
-				
-				System.out.println( data + "님 환영합니다!");
-				
-			}
-			return data;
+
+	int cnt = 0;
+
+	// 로그인
+	public String select(PokerPlayer playerdto) {
+
+		String data = dao.select(playerdto);
+
+		if (data.equals("")) {
+			System.out.println("로그인 실패");
+		} else {
+			System.out.println("로그인 성공!");
+
+			System.out.println(data + "님 환영합니다!");
+
 		}
-		
-	// 회원가입	
+		return data;
+	}
+
+	// 회원가입
 	public void insert(PokerPlayer playerdto) {
 
 		cnt = dao.insert(playerdto);
@@ -38,26 +38,21 @@ public class PokerController {
 			System.out.println("회원가입에 실패했습니다. 다시 시도하세요.");
 		}
 	}
-	
+
 	// 포커 조회하기 - 박수완
-	
+
 	public void conranking() {
 
-		   ArrayList<PokerPlayer> list = dao.ranking();
+		ArrayList<PokerPlayer> list = dao.ranking();
 
-		   		for(int i = 0 ; i < list.size(); i++) {
-					String id = list.get(i).getId();
-					String name = list.get(i).getName();
-					int chip = list.get(i).getChip();
-					
-					System.out.println(i+1+"등 ID : " + id + " 닉네임 : " + name + " 보유 칩 : " + chip);
-				
-			
-					
-					
-		   		}
+		for (int i = 0; i < list.size(); i++) {
+			String id = list.get(i).getId();
+			String name = list.get(i).getName();
+			int chip = list.get(i).getChip();
 
+			System.out.println(i + 1 + "등 ID : " + id + " 닉네임 : " + name + " 보유 칩 : " + chip);
 
+		}
 
 	}
 }
