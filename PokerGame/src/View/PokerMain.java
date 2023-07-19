@@ -24,7 +24,6 @@ public class PokerMain {
 		ArrayList<Card> playerHand = new ArrayList<Card>();
 		ArrayList<Card> dealerHand = new ArrayList<Card>();
 		
-		
 		ArrayList<Card> cards = new ArrayList<Card>();//Card자료형의 Arraylist
 		
 		//덱 제작

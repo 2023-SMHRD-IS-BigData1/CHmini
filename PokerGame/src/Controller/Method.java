@@ -270,7 +270,7 @@ public class Method {
 				return "트리플";
 			} else if (numCountMap.containsValue(2L)) {
 				long numOfPairs = numCountMap.values().stream().filter(count -> count == 2L).count();
-				if (numOfPairs == 2) {
+				if (numOfPairs == 2 || numOfPairs == 3) {
 					// 동일한 숫자가 2장인 경우가 2개: 투페어
 					return "투페어";
 				} else {
