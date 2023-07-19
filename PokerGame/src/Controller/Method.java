@@ -2,6 +2,7 @@ package Controller;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
 
 import Model.Card;
@@ -43,11 +44,11 @@ public class Method {
 			}
 
 		}
-//		for (int i = 0; i < playerHand.size(); i++) {  //출력 실험용
-//			System.out.print(playerHand.get(i).getNumber());
-//			System.out.println(playerHand.get(i).getPattern());
-//		}
-//		System.out.println("==========플레이어==========");
+		for (int i = 0; i < playerHand.size(); i++) { 
+			System.out.print(playerHand.get(i).getNumber());
+			System.out.println(playerHand.get(i).getPattern());
+		}
+		System.out.println("==========플레이어==========");
 		return playerHand;
 	}
 
@@ -78,11 +79,11 @@ public class Method {
 			}
 		}
 
-//		for (int i = 0; i < playerHand.size(); i++) {  //출력 실험문
-//			System.out.print(dealerHand.get(i).getNumber());
-//			System.out.println(dealerHand.get(i).getPattern());
-//		}
-//		System.out.println("==========딜러==========");
+		for (int i = 0; i < playerHand.size(); i++) { 
+			System.out.print(dealerHand.get(i).getNumber());
+			System.out.println(dealerHand.get(i).getPattern());
+		}
+		System.out.println("==========딜러==========");
 
 		return dealerHand;
 	}
@@ -92,6 +93,48 @@ public class Method {
 // 3. 가진 카드에 한장씩을 추가해 주는 메소드
 
 // 4. 받은 카드의 족보를 확인하는 메소드
+	
+	public void checkTree(ArrayList<Card> hand) {
+		ArrayList<Integer> tempNum = new ArrayList<Integer>(); // 패에서 숫자를 분리한 임시 리스트
+		ArrayList<String> tempPattern = new ArrayList<String>(); //패에서 모양을 분리한 임시 리스트
+		for (int i = 0; i < hand.size(); i++) {
+			if (hand.get(i).getNumber().equals("Ace")) {
+				tempNum.add(1);
+			}else if (hand.get(i).getNumber().equals("Jack")) {
+				tempNum.add(10);
+			}else if (hand.get(i).getNumber().equals("Queen")) {
+				tempNum.add(11);
+			}else if (hand.get(i).getNumber().equals("King")) {
+				tempNum.add(12);
+			}else if (hand.get(i).getNumber().equals("2")) {
+				tempNum.add(2);
+			}else if (hand.get(i).getNumber().equals("3")) {
+				tempNum.add(3);
+			}else if (hand.get(i).getNumber().equals("4")) {
+				tempNum.add(4);
+			}else if (hand.get(i).getNumber().equals("5")) {
+				tempNum.add(5);
+			}else if (hand.get(i).getNumber().equals("6")) {
+				tempNum.add(6);
+			}else if (hand.get(i).getNumber().equals("7")) {
+				tempNum.add(7);
+			}else if (hand.get(i).getNumber().equals("8")) {
+				tempNum.add(8);
+			}else if (hand.get(i).getNumber().equals("9")) {
+				tempNum.add(9);
+			}else if (hand.get(i).getNumber().equals("10")) {
+				tempNum.add(10);
+			}
+				
+		}
+
+		for (int i = 0; i < hand.size(); i++) {
+			tempPattern.add(hand.get(i).getPattern());
+		}
+
+		
+	}
+	
 // 5. 족보의 우열을 판단해 승자를 정하는 메소드
 
 }
