@@ -104,7 +104,7 @@ public class PokerDAO {
 	}
 	
 	// 게임 종료후 칩을 받아 데이터베이스에 저장
-	public void upload(PokerPlayer playerdto) {
+	public int upload(PokerPlayer playerdto) {
 		
 		getCon();
 		
@@ -116,9 +116,8 @@ public class PokerDAO {
 			psmt.setInt(1,playerdto.getChip());
 			psmt.setString(1,playerdto.getId());
 			
-		
 
-			rs = psmt.executeQuery();
+			cnt = psmt.executeUpdate();
 
 			
 			
@@ -128,7 +127,7 @@ public class PokerDAO {
 			getClose();
 		}
 		
-		
+		return cnt;
 	}
 
 	

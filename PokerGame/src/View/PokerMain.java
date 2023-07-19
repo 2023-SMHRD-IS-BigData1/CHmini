@@ -232,7 +232,7 @@ public class PokerMain {
 					
 					if (round == 5) {
 						System.out.println("랭킹 서버에 점수가 등록됩니다.");
-						pokerDAO.upload(playerChip);
+						pokerDAO.upload(pokerPlayer);
 						round = 0;
 					}
 
