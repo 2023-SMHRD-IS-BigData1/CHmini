@@ -17,7 +17,8 @@ public class PokerController {
 			String data = dao.select(playerdto);
 			
 			if (data.equals("")) {
-				System.out.println("로그인 실패");
+				System.out.println("아이디와 비밀번호가 일치하지 않습니다");
+				System.exit(1);
 			} else {
 				System.out.println("로그인 성공!");
 				
