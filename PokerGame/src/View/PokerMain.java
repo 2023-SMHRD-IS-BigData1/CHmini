@@ -2,6 +2,7 @@ package View;
 
 import java.util.Scanner;
 
+import Controller.Method;
 import Controller.PokerController;
 import Model.PokerPlayer;
 
@@ -11,6 +12,7 @@ public class PokerMain {
 
 		Scanner sc = new Scanner(System.in);
 		PokerController con = new PokerController();
+		Method method = new Method();
 		
 		
 		
@@ -48,7 +50,7 @@ public class PokerMain {
 				String name = sc.next();
 
 				PokerPlayer playerdto = new PokerPlayer(id, pw, name,0);
-
+				method.getInputName(name);
 				PokerController conn = new PokerController();
 
 				conn.insert(playerdto);
