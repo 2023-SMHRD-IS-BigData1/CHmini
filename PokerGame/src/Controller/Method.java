@@ -101,11 +101,11 @@ public class Method {
 			if (hand.get(i).getNumber().equals("Ace")) {
 				tempNum.add(1);
 			}else if (hand.get(i).getNumber().equals("Jack")) {
-				tempNum.add(10);
-			}else if (hand.get(i).getNumber().equals("Queen")) {
 				tempNum.add(11);
-			}else if (hand.get(i).getNumber().equals("King")) {
+			}else if (hand.get(i).getNumber().equals("Queen")) {
 				tempNum.add(12);
+			}else if (hand.get(i).getNumber().equals("King")) {
+				tempNum.add(13);
 			}else if (hand.get(i).getNumber().equals("2")) {
 				tempNum.add(2);
 			}else if (hand.get(i).getNumber().equals("3")) {
