@@ -6,6 +6,7 @@ import java.util.Scanner;
 import Controller.Method;
 import Controller.PokerController;
 import Model.Card;
+import Model.PokerDAO;
 import Model.PokerPlayer;
 
 public class PokerMain {
@@ -17,6 +18,8 @@ public class PokerMain {
 		PokerController con = new PokerController();
 		PokerPlayer pokerPlayer = new PokerPlayer(null, null, null);
 		Method method = new Method();
+		PokerDAO pokerDAO = new PokerDAO();
+		int round = 0;
 		int playerChip = 50;
 		method.getPlayerChips(playerChip);
 		int dealerChip = 10000;
@@ -58,6 +61,9 @@ public class PokerMain {
 			
 			System.out.print("[1] 로그인 [2] 회원가입 [3]랭킹 [4]종료 >> ");
 			int num = sc.nextInt();
+			method.handClear();
+			playerHand.clear();
+			dealerHand.clear();
 			
 			if(num == 1) {
 
@@ -79,8 +85,8 @@ public class PokerMain {
 					System.out.println("============MINI POKER============");
 					System.out.print("[1] 시작 [2] 설명 [3]로그인 화면으로  >>  ");
 					int select = sc.nextInt();
-					int round = 1;
-					
+					round += 1;
+
 					if (select == 1) {
 					
 						playerHand.addAll(method.dealPlayer5());
@@ -186,18 +192,19 @@ public class PokerMain {
 												System.out.println("마지막 라운드이므로 pot의 칩은 균등 분배됩니다.");
 												playerChip += (method.pot(0) / 2) + (method.pot(0) % 2);
 												dealerChip += (method.pot(0) / 2) + (method.pot(0) % 2);
+												method.potReset();
 											}
 										}
 										
-										playerHand.clear();
-										dealerHand.clear();
 										
 										
 										break;
 										
-									}else if (betnum == 2) {
+									}else if (betnum2 == 2) {
 										System.out.println("pot의 칩을 잃으셨습니다....");
 										System.out.println("남은 칩  :  " + method.returnPlayerChips());
+										method.potReset();
+										break;
 									}else {
 										System.out.println("올바른 수를 입력해 주세요");
 									}
@@ -207,6 +214,8 @@ public class PokerMain {
 							}else if (betnum == 2) {
 								System.out.println("pot의 칩을 잃으셨습니다....");
 								System.out.println("남은 칩  :  " + method.returnPlayerChips());
+								method.potReset();
+								break;
 							}else {
 								System.out.println("올바른 수를 입력해 주세요");
 							}
@@ -223,8 +232,10 @@ public class PokerMain {
 					
 					if (round == 5) {
 						System.out.println("랭킹 서버에 점수가 등록됩니다.");
-						
+						pokerDAO.upload(playerChip);
+						round = 0;
 					}
+
 					
 				}
 				//

@@ -26,6 +26,10 @@ public class Method {
 	ArrayList<Card> cards = new ArrayList<Card>(); // 덱
 	ArrayList<Card> playerHand = new ArrayList<Card>(); // 플레이어의 패
 	ArrayList<Card> dealerHand = new ArrayList<Card>(); // 딜러의 패
+	public void handClear() {
+		playerHand.clear();
+		dealerHand.clear();
+	}
 
 	public void getInputName(String name) {// Player의 name을 가져오기 위한 메소드
 		pokerPlayer = new PokerPlayer(null, null, name, 50);
@@ -349,4 +353,5 @@ public class Method {
 		}
 		
 	}
+
 }
