@@ -15,9 +15,10 @@ public class PokerController {
 	public String select(PokerPlayer playerdto) {
 
 		String data = dao.select(playerdto);
-
+		
 		if (data.equals("")) {
 			System.out.println("로그인 실패");
+			System.exit(1);
 		} else {
 			System.out.println("로그인 성공!");
 
