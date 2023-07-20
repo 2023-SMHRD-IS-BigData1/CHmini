@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/smhrd/Desktop/자바/player.jar"/>
-	<classpathentry kind="lib" path="C:/Users/smhrd/Desktop/데이터베이스/오라클 데이터베이스/sqldeveloper/jdbc/lib/ojdbc11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/smhrd/Desktop/sqldeveloper/jdbc/lib/ojdbc11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/smhrd/Desktop/player.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
