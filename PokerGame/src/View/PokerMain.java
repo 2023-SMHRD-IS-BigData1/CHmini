@@ -6,56 +6,81 @@ import java.util.Scanner;
 import Controller.Method;
 import Controller.PokerController;
 import Model.Card;
+import Model.MP3;
 import Model.PokerDAO;
 import Model.PokerPlayer;
+import javazoom.jl.player.MP3Player;
 
 public class PokerMain {
 
 	private static void printHorizontalCards(ArrayList<Card> cards) {
-	    if (cards.isEmpty()) {
-	        System.out.println("No cards to display.");
-	        return;
-	    }
+		if (cards.isEmpty()) {
+			System.out.println("No cards to display.");
+			return;
+		}
 
-	    int cardHeight = 9; // Height of a card
-	    int numOfCards = cards.size();
+		int cardHeight = 9; // Height of a card
+		int numOfCards = cards.size();
 
-	    for (int i = 0; i < cardHeight; i++) {
-	        for (int j = 0; j < numOfCards; j++) {
-	            Card card = cards.get(j);
+		for (int i = 0; i < cardHeight; i++) {
+			for (int j = 0; j < numOfCards; j++) {
+				Card card = cards.get(j);
 
-	            if (card == null) {
-	                // If the card is null, print empty spaces of the same width
-	                System.out.print("            ");
-	            } else {
-	                String pattern = card.getPattern();
-	                String number = card.getNumber();
+				if (card == null) {
+					// If the card is null, print empty spaces of the same width
+					System.out.print("            ");
+				} else {
+					String pattern = card.getPattern();
+					String number = card.getNumber();
 
-	                if (i == 0) {
-	                    System.out.print("┌─────────┐ ");
-	                } else if (i == 1 || i == 4 || i == 5) {
-	                    System.out.print("│         │ ");
-	                } else if (i == 2) {
-	                    System.out.print("│         │ ");
-	                } else if (i == 3) {
-	                    System.out.print("│   " + pattern+number + "    │ ");
-	                } else if (i == 6) {
-	                	System.out.print("└─────────┘ ");
-	                }
-	            }
-	        }
-	        // Check if this is the last row of a card, if not, move to the next line
-	        if (i != cardHeight - 1) {
-	            System.out.println();
-	        }
-	    }
+					if (i == 0) {
+						System.out.print("┌─────────┐ ");
+					} else if (i == 1 || i == 4 || i == 5) {
+						System.out.print("│         │ ");
+					} else if (i == 2) {
+						System.out.print("│         │ ");
+					} else if (i == 3) {
+						System.out.print("│   " + pattern + number + "    │ ");
+					} else if (i == 6) {
+						System.out.print("└─────────┘ ");
+					}
+				}
+			}
+			// Check if this is the last row of a card, if not, move to the next line
+			if (i != cardHeight - 1) {
+				System.out.println();
+			}
+		}
 	}
 
-
-
-
-
 	public static void main(String[] args) {
+
+		// 뮤직객체 생성하기
+		MP3 music1 = new MP3("Jazz Piano Music", 100, ".\\music\\Jazz Piano Music.mp3");
+		MP3 music2 = new MP3("베팅 1", 100, ".\\music\\베팅 1.mp3");
+		MP3 music3 = new MP3("카드 딜링 1", 100, ".\\music\\카드 딜링 1.mp3");
+		MP3 music4 = new MP3("카드 딜링 2", 100, ".\\music\\카드 딜링 2.mp3");
+		MP3 music5 = new MP3("카드 딜링 3", 100, ".\\music\\카드 딜링 3.mp3");
+		MP3 music6 = new MP3("박수", 100, ".\\music\\박수.mp3");
+		MP3 music7 = new MP3("폭죽", 100, ".\\music\\폭죽.mp3");
+
+		// 음악 객체 담을 수 있는 음악 리스트
+		ArrayList<MP3> list = new ArrayList<MP3>();
+
+		list.add(music1);
+		list.add(music2);
+		list.add(music3);
+		list.add(music4);
+		list.add(music5);
+		list.add(music6);
+		list.add(music7);
+
+		MP3Player mp3 = new MP3Player();
+
+		
+		
+		
+		
 		Scanner sc = new Scanner(System.in);
 		PokerController con = new PokerController();
 
@@ -78,7 +103,7 @@ public class PokerMain {
 		for (int i = 0; i < 13; i++) {
 			if (i == 0) {
 				cardNumber[i] = "A";
-			} else if(i==9) {
+			} else if (i == 9) {
 				cardNumber[i] = "⑩";
 			} else if (i == 10) {
 				cardNumber[i] = "J";
@@ -102,6 +127,7 @@ public class PokerMain {
 		// --------------------------------------------------------------------------------
 
 		while (true) {
+			mp3.play(list.get(0).getpath());
 			System.out.println("\n\n\n");
 			System.out.println("\t███╗   ███╗██╗███╗   ██╗██╗    ██████╗  ██████╗ ██╗  ██╗███████╗██████╗ ");
 			System.out.println("\t████╗ ████║██║████╗  ██║██║    ██╔══██╗██╔═══██╗██║ ██╔╝██╔════╝██╔══██╗");
@@ -141,7 +167,7 @@ public class PokerMain {
 					System.out.println("\t██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  ╚═╝");
 					System.out.println("\t╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗██╗");
 					System.out.println("\t ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝");
-					System.out.println("");                                                       
+					System.out.println("");
 					System.out.print("\t[1] 게임시작\t[2] 게임설명\t[3]로그인 화면으로  >>  ");
 					int select = sc.nextInt();
 					round = 0;
@@ -172,6 +198,7 @@ public class PokerMain {
 							System.out.println();
 							System.out.print("[1] 배팅 [2] 폴드  >>  ");
 							int betnum = sc.nextInt();
+							mp3.play(list.get(1).getpath()); //음악
 							if (betnum == 1) {
 								while (true) {
 
@@ -203,7 +230,8 @@ public class PokerMain {
 									System.out.println();
 									System.out.print("[1] 배팅 [2] 폴드  >>  ");
 									int betnum2 = sc.nextInt();
-
+									mp3.play(list.get(1).getpath());
+									
 									if (betnum2 == 1) {
 
 										System.out.print("배팅할 칩 장수를 입력해 주세요  >>  ");
@@ -242,6 +270,8 @@ public class PokerMain {
 
 										if (result == 1) {
 											System.out.println("플레이어 승리!");
+											mp3.play(list.get(5).getpath());
+											mp3.play(list.get(6).getpath());
 											method.playerWin();
 											method.potReset();
 											method.handClear();
@@ -358,6 +388,7 @@ public class PokerMain {
 				con.conranking();
 
 			} else if (num == 4) {
+<<<<<<< HEAD
 				System.out.println("");
 				System.out.println("██████╗ ██╗   ██╗███████╗    ██████╗ ██╗   ██╗███████╗   ");
 				System.out.println("██╔══██╗╚██╗ ██╔╝██╔════╝    ██╔══██╗╚██╗ ██╔╝██╔════╝   ");
@@ -366,6 +397,10 @@ public class PokerMain {
 				System.out.println("██████╔╝   ██║   ███████╗    ██████╔╝   ██║   ███████╗██╗");
 				System.out.println("╚═════╝    ╚═╝   ╚══════╝    ╚═════╝    ╚═╝   ╚══════╝╚═╝");
 				System.out.println("");                                                         
+=======
+				System.out.println("종료");
+				mp3.stop();
+>>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-BigData1/CHmini.git
 				break;
 			} else {
 				System.out.println("다시 입력해주세요");
