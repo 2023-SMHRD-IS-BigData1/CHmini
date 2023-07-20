@@ -395,19 +395,11 @@ public class PokerMain {
 				con.conranking();
 
 			} else if (num == 4) {
-<<<<<<< HEAD
-				System.out.println("");
-				System.out.println("██████╗ ██╗   ██╗███████╗    ██████╗ ██╗   ██╗███████╗   ");
-				System.out.println("██╔══██╗╚██╗ ██╔╝██╔════╝    ██╔══██╗╚██╗ ██╔╝██╔════╝   ");
-				System.out.println("██████╔╝ ╚████╔╝ █████╗      ██████╔╝ ╚████╔╝ █████╗     ");
-				System.out.println("██╔══██╗  ╚██╔╝  ██╔══╝      ██╔══██╗  ╚██╔╝  ██╔══╝     ");
-				System.out.println("██████╔╝   ██║   ███████╗    ██████╔╝   ██║   ███████╗██╗");
-				System.out.println("╚═════╝    ╚═╝   ╚══════╝    ╚═════╝    ╚═╝   ╚══════╝╚═╝");
-				System.out.println("");                                                         
-=======
+
+			
 				System.out.println("종료");
 				mp3.stop();
->>>>>>> branch 'master' of https://github.com/2023-SMHRD-IS-BigData1/CHmini.git
+
 				break;
 			} else {
 				System.out.println("다시 입력해주세요");
