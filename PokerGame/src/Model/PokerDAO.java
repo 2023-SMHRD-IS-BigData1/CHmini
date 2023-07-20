@@ -114,7 +114,7 @@ public class PokerDAO {
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setInt(1,playerdto.getChip());
-			psmt.setString(1,playerdto.getId());
+			psmt.setString(2,playerdto.getId());
 			
 
 			cnt = psmt.executeUpdate();
