@@ -45,15 +45,18 @@ public class PokerController {
 	public void conranking() {
 
 		ArrayList<PokerPlayer> list = dao.ranking();
-
+		System.out.println("");
+		System.out.println("");
+		System.out.println("┌───*.·:·.☽✧         RANKING         ✧☾.·:·.*───┐");
 		for (int i = 0; i < list.size(); i++) {
 			String id = list.get(i).getId();
 			String name = list.get(i).getName();
 			int chip = list.get(i).getChip();
-
-			System.out.println(i + 1 + "등 ID : " + id + " 닉네임 : " + name + " 보유 칩 : " + chip);
-
+			System.out.println("▶ "+(i + 1 )+ "등 ID : " + id + " 닉네임 : " + name + " 보유 칩 : " + chip);
 		}
+		System.out.println("└───*.·:·.☽✧            ✦            ✧☾.·:·.*───┘");
+		System.out.println("");
+		System.out.println("");
 
 	}
 }

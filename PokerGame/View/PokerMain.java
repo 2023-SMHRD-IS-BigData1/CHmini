@@ -67,13 +67,14 @@ public class PokerMain {
 			dealerHand.clear();
 			
 			if(num == 1) {
-
-				System.out.println("====로그인====");
-				System.out.print("ID >> ");
+				System.out.println("");
+				System.out.println(" ────── Login ────── ");
+				System.out.print("│ ID >> ");
 				String id = sc.next();
-				System.out.print("PW >> ");
+				System.out.print("│ PW >> ");
 				String pw = sc.next();
-
+				System.out.println(" ─────────────────── ");
+				System.out.println("");
 				PokerPlayer playerdto = new PokerPlayer(id, pw, null, method.returnPlayerChips());
 
 				PokerController conn = new PokerController();
@@ -82,7 +83,8 @@ public class PokerMain {
 
 				//
 				while (true) {
-
+					
+					System.out.println("");
 					System.out.println("============MINI POKER============");
 					System.out.print("[1] 시작 [2] 설명 [3]로그인 화면으로  >>  ");
 					int select = sc.nextInt();
@@ -281,13 +283,15 @@ public class PokerMain {
 
 			}else if (num == 2) {
 				
+				System.out.println("");
 				System.out.print("ID >> ");
 				String id = sc.next();
 				System.out.print("PW >> ");
 				String pw = sc.next();
 				System.out.print("NAME >> ");
 				String name = sc.next();
-
+				System.out.println("");
+				
 				PokerPlayer playerdto = new PokerPlayer(id, pw, name,0);
 				method.getInputName(name);
 				PokerController conn = new PokerController();
