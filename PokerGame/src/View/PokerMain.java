@@ -205,12 +205,12 @@ public class PokerMain {
 							System.out.println();
 							System.out.print("[1] 배팅 [2] 폴드  >>  ");
 							int betnum = sc.nextInt();
-							mp3.play(list.get(1).getpath()); //음악
 							if (betnum == 1) {
 								while (true) {
 
 									System.out.print("배팅할 칩 장수를 입력해 주세요  >>  ");
 									int bet = sc.nextInt();
+									mp3.play(list.get(1).getpath()); //음악
 									method.pot(bet);
 									if (method.returnPlayerChips() < 0) {
 										System.out.println("플레이어 칩이 0장 이하가 되어 패배하였습니다.");
@@ -224,6 +224,7 @@ public class PokerMain {
 									playerHand.addAll(method.dealPlayer1());
 									dealerHand.addAll(method.dealDealer1());
 
+									
 									System.out.println("==============DEALER===============");
 									printHorizontalCards(dealerHand);
 									System.out.println();
@@ -237,12 +238,12 @@ public class PokerMain {
 									System.out.println();
 									System.out.print("[1] 배팅 [2] 폴드  >>  ");
 									int betnum2 = sc.nextInt();
-									mp3.play(list.get(1).getpath());
 									
 									if (betnum2 == 1) {
 
 										System.out.print("배팅할 칩 장수를 입력해 주세요  >>  ");
 										int bet2 = sc.nextInt();
+										mp3.play(list.get(1).getpath());
 										method.pot(bet2);
 										if (method.returnPlayerChips() < 0) {
 											System.out.println("플레이어 칩이 0장 이하가 되어 패배하였습니다.");
@@ -404,6 +405,7 @@ public class PokerMain {
 			} else {
 				System.out.println("다시 입력해주세요");
 			}
+		
 
 		}
 
