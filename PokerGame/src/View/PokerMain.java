@@ -296,13 +296,30 @@ public class PokerMain {
 								playerdto = new PokerPlayer(id, pw, null, method.returnPlayerChips());
 								pokerDAO.upload(playerdto);
 								round = 0;
+								method.getPlayerChips(100);
 								break;
 							}
 						}
 
 					} else if (select == 2) {
-						System.out.println("설명");
+						System.out.println("=====================MINI POKER 룰 설명========================");
+						System.out.println();
+						System.out.println("MINI POKER는 간략화된 딜러와의 1대 1 포커 승부입니다!");
+						System.out.println("플레이어와 딜러는 처음에 각각 5장의 카드를 받습니다.");
+						System.out.println("처음에 판돈으로 칩 한 장을 테이블에 배팅합니다. 테이블에 있는 칩의 합을 pot이라 합니다.");
+						System.out.println();
+						System.out.println("플레이어는 딜러의 패와 자신의 패를 비교해 칩을 배팅해 주세요!");
+						System.out.println("딜러는 당신의 배팅에 반드시 따라 배팅해 줍니다.");
+						System.out.println("배팅 후 카드를 한 장씩 더 받게 됩니다.");
+						System.out.println();
+						System.out.println("그 후에는 다시 배팅 혹은 폴드(포기)를 선택하게 되고 여기서 배팅을 다시 하신다면 족보 비교로 넘어갑니다.");
+						System.out.println("딜러와 플레이어의 족보를 비교해 더 강한 족보인 쪽이 pot의 칩을 가져가게 됩니다.");
+						System.out.println("이것을 5라운드까지 반복하게 되고 5라운드 종료 시 남아 있는 칩이 랭킹에 등록됩니다.");
+						System.out.println();
+						System.out.println("************************주의*****************************");
+						System.out.println("어떤 이유에서든 소지 칩이 0장 이하가 될 경우 즉시 패배하게 됩니다.");
 					} else if (select == 3) {
+						System.out.println("게임을 종료합니다.");
 						break;
 					}
 
