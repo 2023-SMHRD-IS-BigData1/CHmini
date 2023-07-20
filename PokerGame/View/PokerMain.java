@@ -16,16 +16,17 @@ public class PokerMain {
 
 		Scanner sc = new Scanner(System.in);
 		PokerController con = new PokerController();
-		PokerPlayer pokerPlayer = new PokerPlayer(null, null, null);
+
 		Method method = new Method();
 		PokerDAO pokerDAO = new PokerDAO();
 		int round = 0;
-		int playerChip = 50;
+		int playerChip = 100; //플레이어의 초기 칩
 		method.getPlayerChips(playerChip);
 		int dealerChip = 10000;
 		method.getDealerChips(dealerChip);
 		ArrayList<Card> playerHand = new ArrayList<Card>();
 		ArrayList<Card> dealerHand = new ArrayList<Card>();
+		
 		
 		ArrayList<Card> cards = new ArrayList<Card>();//Card자료형의 Arraylist
 		
@@ -73,7 +74,7 @@ public class PokerMain {
 				System.out.print("PW >> ");
 				String pw = sc.next();
 
-				PokerPlayer playerdto = new PokerPlayer(id, pw, null, 0);
+				PokerPlayer playerdto = new PokerPlayer(id, pw, null, method.returnPlayerChips());
 
 				PokerController conn = new PokerController();
 
@@ -85,15 +86,17 @@ public class PokerMain {
 					System.out.println("============MINI POKER============");
 					System.out.print("[1] 시작 [2] 설명 [3]로그인 화면으로  >>  ");
 					int select = sc.nextInt();
-					round += 1;
+					round = 0;
 
 					if (select == 1) {
-					
-						playerHand.addAll(method.dealPlayer5());
-						dealerHand.addAll(method.dealDealer5());
-						
 						
 						while (true) {
+							if (method.returnPlayerChips() < 0) {
+								break;
+							}
+							playerHand.addAll(method.dealPlayer5());
+							dealerHand.addAll(method.dealDealer5());
+							round += 1;
 							for (int i = 0; i < dealerHand.size(); i++) {
 								System.out.print(dealerHand.get(i).getPattern() + dealerHand.get(i).getNumber() + "  ");
 							}
@@ -103,7 +106,11 @@ public class PokerMain {
 							System.out.println("라운드  :  " + round + "        V                 S       pot : " + method.pot(1) + "                ");
 							System.out.println();
 							System.out.println("==============PLAYER================");
-							System.out.println();
+							System.out.println("시작 시 기본 칩 1장을 배팅합니다");
+							if (method.returnPlayerChips() < 0) {
+								System.out.println("플레이어 칩이 0장 이하가 되어 패배하였습니다.");
+								break;
+							}
 							System.out.println("남은 칩  :  " + method.returnPlayerChips());
 							for (int i = 0; i < playerHand.size(); i++) {
 								System.out.print(playerHand.get(i).getPattern() + playerHand.get(i).getNumber() + "  ");
@@ -117,6 +124,10 @@ public class PokerMain {
 									System.out.print("배팅할 칩 장수를 입력해 주세요  >>  ");
 									int bet = sc.nextInt();
 									method.pot(bet);
+									if (method.returnPlayerChips() < 0) {
+										System.out.println("플레이어 칩이 0장 이하가 되어 패배하였습니다.");
+										break;
+									}
 									System.out.println();
 									System.out.println("======추가 카드 딜링======");
 									
@@ -144,10 +155,14 @@ public class PokerMain {
 									int betnum2 = sc.nextInt();
 									
 									if (betnum2 == 1) {
-										
+
 										System.out.print("배팅할 칩 장수를 입력해 주세요  >>  ");
 										int bet2 = sc.nextInt();
 										method.pot(bet2);
+										if (method.returnPlayerChips() < 0) {
+											System.out.println("플레이어 칩이 0장 이하가 되어 패배하였습니다.");
+											break;
+										}
 										System.out.println();
 										System.out.println("======추가 카드 딜링======");
 										
@@ -179,20 +194,32 @@ public class PokerMain {
 
 										if (result == 1) {
 											System.out.println("플레이어 승리!");
-											playerChip += method.pot(0);
+											method.playerWin();
 											method.potReset();
+											method.handClear();
+											playerHand.clear();
+											dealerHand.clear();
 										}else if (result == 2) {
 											System.out.println("플레이어 패배...");
-											dealerChip += method.pot(0);
+											method.dealerWin();
 											method.potReset();
+											method.handClear();
+											playerHand.clear();
+											dealerHand.clear();
 										}else {
 											System.out.println("무승부");
 											System.out.println("pot의 칩은 다음 승부로 이전됩니다.");
+											method.handClear();
+											playerHand.clear();
+											dealerHand.clear();
 											if (round == 5) {
 												System.out.println("마지막 라운드이므로 pot의 칩은 균등 분배됩니다.");
 												playerChip += (method.pot(0) / 2) + (method.pot(0) % 2);
 												dealerChip += (method.pot(0) / 2) + (method.pot(0) % 2);
 												method.potReset();
+												method.handClear();
+												playerHand.clear();
+												dealerHand.clear();
 											}
 										}
 										
@@ -204,10 +231,15 @@ public class PokerMain {
 										System.out.println("pot의 칩을 잃으셨습니다....");
 										System.out.println("남은 칩  :  " + method.returnPlayerChips());
 										method.potReset();
+										method.handClear();
+										playerHand.clear();
+										dealerHand.clear();
 										break;
 									}else {
 										System.out.println("올바른 수를 입력해 주세요");
+
 									}
+									
 								}
 
 								
@@ -215,12 +247,19 @@ public class PokerMain {
 								System.out.println("pot의 칩을 잃으셨습니다....");
 								System.out.println("남은 칩  :  " + method.returnPlayerChips());
 								method.potReset();
-								break;
+								method.handClear();
+								playerHand.clear();
+								dealerHand.clear();
 							}else {
 								System.out.println("올바른 수를 입력해 주세요");
 							}
-							break;
-							
+
+							if (round == 5) {
+								System.out.println("랭킹 서버에 점수가 등록됩니다.");
+								pokerDAO.upload(playerdto);
+								round = 0;
+								break;
+							}
 						}
 						
 						
@@ -230,11 +269,10 @@ public class PokerMain {
 						break;
 					}
 					
-					if (round == 5) {
-						System.out.println("랭킹 서버에 점수가 등록됩니다.");
-						pokerDAO.upload(pokerPlayer);
-						round = 0;
-					}
+					
+					method.handClear();
+					playerHand.clear();
+					dealerHand.clear();
 
 					
 				}
@@ -264,7 +302,7 @@ public class PokerMain {
 				System.out.println("종료");
 				break;
 			}else {
-				System.out.println("다시입력해주세요");
+				System.out.println("다시 입력해주세요");
 			}
 		
 			

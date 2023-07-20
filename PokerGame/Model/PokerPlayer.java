@@ -1,8 +1,12 @@
 package Model;
 
-public class PokerPlayer {
+import Controller.Method;
 
-	int chip;
+public class PokerPlayer {
+	
+	Method method = new Method();
+
+	int chip = method.returnPlayerChips();
 	private String name; // 이름은 View에 회원가입 시의 이름이다.
 	private String id;
 	private String pw;

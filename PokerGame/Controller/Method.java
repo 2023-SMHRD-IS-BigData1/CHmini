@@ -19,17 +19,16 @@ public class Method {
 
 	PokerPlayer pokerPlayer = null;
 	PokerDealer pokerDealer = new PokerDealer();
-	int playerchip;
-	int dealerchip;
+	int playerChip;
+	int dealerChip;
 	int pot = 0;
 	
 	ArrayList<Card> cards = new ArrayList<Card>(); // 덱
 	ArrayList<Card> playerHand = new ArrayList<Card>(); // 플레이어의 패
 	ArrayList<Card> dealerHand = new ArrayList<Card>(); // 딜러의 패
-	public void handClear() {
-		playerHand.clear();
-		dealerHand.clear();
-	}
+	
+	
+
 
 	public void getInputName(String name) {// Player의 name을 가져오기 위한 메소드
 		pokerPlayer = new PokerPlayer(null, null, name, 50);
@@ -41,22 +40,30 @@ public class Method {
 		}
 	}
 
-	
 	public void getPlayerChips(int a) {
-		playerchip = a;
+		playerChip = a;
 	}
 
 	public void getDealerChips(int a) {
-		dealerchip = a;
+		dealerChip = a;
 	}
 	
 	public int returnPlayerChips() {
-		return playerchip;
+		return playerChip;
 	}
 	
 	public int returnDealerChips() {
-		return dealerchip;
+		return dealerChip;
 	}
+	
+	public void playerWin() {
+		playerChip += pot;
+	}
+	
+	public void dealerWin() {
+		dealerChip += pot;
+	}
+
 
 	// 1. 플레이어가 카드를 5장 배분받는 메소드
 	public ArrayList<Card> dealPlayer5() {
@@ -118,10 +125,10 @@ public class Method {
 
 // 2. 가진 칩 이하의 칩을 배팅하는 메소드 ( 플레이어만, 딜러는 계속 따라옴 )
 
-	public int pot(int beting_chip) {
-		playerchip -= beting_chip;
-		dealerchip -= beting_chip;
-		pot += beting_chip * 2;
+	public int pot(int betting_chip) {
+		playerChip -= betting_chip;
+		dealerChip -= betting_chip;
+		pot += betting_chip * 2;
 		return pot;
 		// 추후에 우열을 가려서 승자에게 pot을 지급하면 됨.
 	}
@@ -275,7 +282,7 @@ public class Method {
 				return "트리플";
 			} else if (numCountMap.containsValue(2L)) {
 				long numOfPairs = numCountMap.values().stream().filter(count -> count == 2L).count();
-				if (numOfPairs == 2 || numOfPairs == 3) {
+				if (numOfPairs == 2) {
 					// 동일한 숫자가 2장인 경우가 2개: 투페어
 					return "투페어";
 				} else {
@@ -353,6 +360,12 @@ public class Method {
 			return 3;
 		}
 		
+	}
+	
+	//  핸드 클리어 메소드
+	public void handClear() {
+		playerHand.clear();
+		dealerHand.clear();
 	}
 
 }
