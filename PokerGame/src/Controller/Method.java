@@ -201,13 +201,13 @@ public class Method {
 		ArrayList<Integer> tempNum = new ArrayList<Integer>(); // 패에서 숫자를 분리한 임시 리스트
 		ArrayList<String> tempPattern = new ArrayList<String>(); // 패에서 모양을 분리한 임시 리스트
 		for (int i = 0; i < hand.size(); i++) {
-			if (hand.get(i).getNumber().equals("Ace")) {
+			if (hand.get(i).getNumber().equals("A")) {
 				tempNum.add(1);
-			} else if (hand.get(i).getNumber().equals("Jack")) {
+			} else if (hand.get(i).getNumber().equals("J")) {
 				tempNum.add(11);
-			} else if (hand.get(i).getNumber().equals("Queen")) {
+			} else if (hand.get(i).getNumber().equals("Q")) {
 				tempNum.add(12);
-			} else if (hand.get(i).getNumber().equals("King")) {
+			} else if (hand.get(i).getNumber().equals("K")) {
 				tempNum.add(13);
 			} else if (hand.get(i).getNumber().equals("2")) {
 				tempNum.add(2);
