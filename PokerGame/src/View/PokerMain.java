@@ -118,11 +118,12 @@ public class PokerMain {
 
 			if (num == 1) {
 
-				System.out.println("====로그인====");
-				System.out.print("ID >> ");
+				System.out.println("┌─────────Login──────────┐");
+				System.out.print(" ID 입력 : ");
 				String id = sc.next();
-				System.out.print("PW >> ");
+				System.out.print(" PW 입력 : ");
 				String pw = sc.next();
+				System.out.println("└────────────────────────┘");
 
 				PokerPlayer playerdto = new PokerPlayer(id, pw, null, method.returnPlayerChips());
 
@@ -133,8 +134,15 @@ public class PokerMain {
 				//
 				while (true) {
 
-					System.out.println("============MINI POKER============");
-					System.out.print("[1] 시작 [2] 설명 [3]로그인 화면으로  >>  ");
+					System.out.println("");
+					System.out.println("\t██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗██╗");
+					System.out.println("\t██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝██║");
+					System.out.println("\t██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  ██║");
+					System.out.println("\t██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  ╚═╝");
+					System.out.println("\t╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗██╗");
+					System.out.println("\t ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝");
+					System.out.println("");                                                       
+					System.out.print("\t[1] 게임시작\t[2] 게임설명\t[3]로그인 화면으로  >>  ");
 					int select = sc.nextInt();
 					round = 0;
 
