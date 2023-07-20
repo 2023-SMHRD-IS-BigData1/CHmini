@@ -84,9 +84,16 @@ public class PokerMain {
 				//
 				while (true) {
 					
+					System.out.println("\n\n\n");
+					System.out.println("███╗   ███╗██╗███╗   ██╗██╗    ██████╗  ██████╗ ██╗  ██╗███████╗██████╗ ");
+					System.out.println("████╗ ████║██║████╗  ██║██║    ██╔══██╗██╔═══██╗██║ ██╔╝██╔════╝██╔══██╗");
+					System.out.println("██╔████╔██║██║██╔██╗ ██║██║    ██████╔╝██║   ██║█████╔╝ █████╗  ██████╔╝");
+					System.out.println("██║╚██╔╝██║██║██║╚██╗██║██║    ██╔═══╝ ██║   ██║██╔═██╗ ██╔══╝  ██╔══██╗");
+					System.out.println("██║ ╚═╝ ██║██║██║ ╚████║██║    ██║     ╚██████╔╝██║  ██╗███████╗██║  ██║");
+					System.out.println("╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝    ╚═╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝");
 					System.out.println("");
-					System.out.println("============MINI POKER============");
 					System.out.print("[1] 시작 [2] 설명 [3]로그인 화면으로  >>  ");
+					
 					int select = sc.nextInt();
 					round = 0;
 
