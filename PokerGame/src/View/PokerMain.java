@@ -19,34 +19,41 @@ public class PokerMain {
 			return;
 		}
 
-		int cardHeight = 9; // Height of a card
+		int cardHeight = 9;
 		int numOfCards = cards.size();
 
 		for (int i = 0; i < cardHeight; i++) {
 			for (int j = 0; j < numOfCards; j++) {
 				Card card = cards.get(j);
 
-				if (card == null) {
-					// If the card is null, print empty spaces of the same width
-					System.out.print("            ");
-				} else {
-					String pattern = card.getPattern();
-					String number = card.getNumber();
+				String pattern = card.getPattern();
+				String number = card.getNumber();
 
-					if (i == 0) {
-						System.out.print("┌─────────┐ ");
-					} else if (i == 1 || i == 4 || i == 5) {
-						System.out.print("│         │ ");
-					} else if (i == 2) {
-						System.out.print("│         │ ");
-					} else if (i == 3) {
-						System.out.print("│   " + pattern + number + "    │ ");
-					} else if (i == 6) {
-						System.out.print("└─────────┘ ");
+				if (i == 0) {
+					System.out.print("┌─────────┐ ");
+				} else if (i == 4) {
+					System.out.print("│         │ ");
+				} else if (i == 2) {
+					System.out.print("│         │ ");
+				} else if (i == 3) {
+					System.out.print("│    " + pattern + "    │ ");
+				} else if (i == 6) {
+					System.out.print("└─────────┘ ");
+				} else if (i == 1) {
+					if (number.equals("10")) {
+						System.out.print("│" + number + "       │ ");
+					} else {
+						System.out.print("│" + number + "        │ ");
+					}
+				} else if (i == 5) {
+					if (number.equals("10")) {
+						System.out.print("│       " + number + "│ ");
+					} else {
+						System.out.print("│        " + number + "│ ");
 					}
 				}
 			}
-			// Check if this is the last row of a card, if not, move to the next line
+
 			if (i != cardHeight - 1) {
 				System.out.println();
 			}
