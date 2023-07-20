@@ -110,8 +110,6 @@ public class PokerMain {
 		for (int i = 0; i < 13; i++) {
 			if (i == 0) {
 				cardNumber[i] = "A";
-			} else if (i == 9) {
-				cardNumber[i] = "⑩";
 			} else if (i == 10) {
 				cardNumber[i] = "J";
 			} else if (i == 11) {
@@ -175,7 +173,7 @@ public class PokerMain {
 					System.out.println("\t╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗██╗");
 					System.out.println("\t ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝");
 					System.out.println("");
-					System.out.print("\t[1] 게임시작\t[2] 게임설명\t[3]로그인 화면으로  >>  ");
+					System.out.print("[1] 게임시작 [2] 게임설명 [3] 로그인 화면으로  >>  ");
 					int select = sc.nextInt();
 					round = 0;
 
@@ -188,13 +186,23 @@ public class PokerMain {
 							playerHand.addAll(method.dealPlayer5());
 							dealerHand.addAll(method.dealDealer5());
 							round += 1;
-							System.out.println("==============DEALER===============");
+							
 							printHorizontalCards(dealerHand);
-							System.out.println();
-							System.out.println("라운드  :  " + round + "        V                 S       pot : "
-									+ method.pot(1) + "                ");
-							System.out.println();
-							System.out.println("==============PLAYER================");
+							
+							System.out.println("\t▲▲▲▲▲▲▲▲▲▲▲ DEALER ▲▲▲▲▲▲▲▲▲▲");
+							System.out.println("");
+							System.out.println("\t┌\t\t\t   ┐");
+							System.out.println("");
+							System.out.println("");
+							System.out.println("\t 라운드  :  " + round + "       pot : "
+									+ method.pot(0) );
+							System.out.println("");
+							System.out.println("");
+							System.out.println("\t└\t\t\t   ┘");
+							System.out.println("");
+							System.out.println("\t▼▼▼▼▼▼▼▼▼▼▼ PLAYER ▼▼▼▼▼▼▼▼▼▼▼");
+							System.out.println("");
+							
 							System.out.println("시작 시 기본 칩 1장을 배팅합니다");
 							if (method.returnPlayerChips() < 0) {
 								System.out.println("플레이어 칩이 0장 이하가 되어 패배하였습니다.");
@@ -225,14 +233,23 @@ public class PokerMain {
 									dealerHand.addAll(method.dealDealer1());
 
 									
-									System.out.println("==============DEALER===============");
+									
 									printHorizontalCards(dealerHand);
-									System.out.println();
-									System.out.println("라운드  :  " + round + "        V                 S       pot : "
-											+ method.pot(0) + "                ");
-									System.out.println();
-									System.out.println("==============PLAYER================");
-									System.out.println();
+									
+									System.out.println("\t▲▲▲▲▲▲▲▲▲▲▲ DEALER ▲▲▲▲▲▲▲▲▲▲");
+									System.out.println("");
+									System.out.println("\t┌\t\t\t   ┐");
+									System.out.println("");
+									System.out.println("");
+									System.out.println("\t 라운드  :  " + round + "       pot : "
+											+ method.pot(0) );
+									System.out.println("");
+									System.out.println("");
+									System.out.println("\t└\t\t\t   ┘");
+									System.out.println("");
+									System.out.println("\t▼▼▼▼▼▼▼▼▼▼▼ PLAYER ▼▼▼▼▼▼▼▼▼▼▼");
+									System.out.println("");
+									
 									System.out.println("남은 칩  :  " + method.returnPlayerChips());
 									printHorizontalCards(playerHand);
 									System.out.println();
@@ -257,15 +274,23 @@ public class PokerMain {
 										playerHand.addAll(method.dealPlayer1());
 										dealerHand.addAll(method.dealDealer1());
 
-										System.out.println("==============DEALER===============");
+										
 										printHorizontalCards(dealerHand);
-										System.out.println();
-										System.out
-												.println("라운드  :  " + round + "        V                 S       pot : "
-														+ method.pot(0) + "                ");
-										System.out.println();
-										System.out.println("==============PLAYER================");
-										System.out.println();
+										
+										System.out.println("\t▲▲▲▲▲▲▲▲▲▲▲ DEALER ▲▲▲▲▲▲▲▲▲▲");
+										System.out.println("");
+										System.out.println("\t┌\t\t\t   ┐");
+										System.out.println("");
+										System.out.println("");
+										System.out.println("\t 라운드  :  " + round + "       pot : "
+												+ method.pot(0) );
+										System.out.println("");
+										System.out.println("");
+										System.out.println("\t└\t\t\t   ┘");
+										System.out.println("");
+										System.out.println("\t▼▼▼▼▼▼▼▼▼▼▼ PLAYER ▼▼▼▼▼▼▼▼▼▼▼");
+										System.out.println("");
+										
 										System.out.println("남은 칩  :  " + method.returnPlayerChips());
 										printHorizontalCards(playerHand);
 										System.out.println();
