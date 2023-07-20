@@ -358,7 +358,14 @@ public class PokerMain {
 				con.conranking();
 
 			} else if (num == 4) {
-				System.out.println("종료");
+				System.out.println("");
+				System.out.println("██████╗ ██╗   ██╗███████╗    ██████╗ ██╗   ██╗███████╗   ");
+				System.out.println("██╔══██╗╚██╗ ██╔╝██╔════╝    ██╔══██╗╚██╗ ██╔╝██╔════╝   ");
+				System.out.println("██████╔╝ ╚████╔╝ █████╗      ██████╔╝ ╚████╔╝ █████╗     ");
+				System.out.println("██╔══██╗  ╚██╔╝  ██╔══╝      ██╔══██╗  ╚██╔╝  ██╔══╝     ");
+				System.out.println("██████╔╝   ██║   ███████╗    ██████╔╝   ██║   ███████╗██╗");
+				System.out.println("╚═════╝    ╚═╝   ╚══════╝    ╚═════╝    ╚═╝   ╚══════╝╚═╝");
+				System.out.println("");                                                         
 				break;
 			} else {
 				System.out.println("다시 입력해주세요");
