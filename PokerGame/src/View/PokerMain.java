@@ -84,10 +84,6 @@ public class PokerMain {
 
 		MP3Player mp3 = new MP3Player();
 
-		
-		
-		
-		
 		Scanner sc = new Scanner(System.in);
 		PokerController con = new PokerController();
 
@@ -176,6 +172,8 @@ public class PokerMain {
 					System.out.print("[1] 게임시작 [2] 게임설명 [3] 로그인 화면으로  >>  ");
 					int select = sc.nextInt();
 					round = 0;
+					method.getPlayerChips(100);
+					method.potReset();
 
 					if (select == 1) {
 
@@ -186,23 +184,22 @@ public class PokerMain {
 							playerHand.addAll(method.dealPlayer5());
 							dealerHand.addAll(method.dealDealer5());
 							round += 1;
-							
+
 							printHorizontalCards(dealerHand);
-							
+
 							System.out.println("\t▲▲▲▲▲▲▲▲▲▲▲ DEALER ▲▲▲▲▲▲▲▲▲▲");
 							System.out.println("");
 							System.out.println("\t┌\t\t\t   ┐");
 							System.out.println("");
 							System.out.println("");
-							System.out.println("\t 라운드  :  " + round + "       pot : "
-									+ method.pot(0) );
+							System.out.println("\t 라운드  :  " + round + "       pot : " + method.pot(1));
 							System.out.println("");
 							System.out.println("");
 							System.out.println("\t└\t\t\t   ┘");
 							System.out.println("");
 							System.out.println("\t▼▼▼▼▼▼▼▼▼▼▼ PLAYER ▼▼▼▼▼▼▼▼▼▼▼");
 							System.out.println("");
-							
+
 							System.out.println("시작 시 기본 칩 1장을 배팅합니다");
 							if (method.returnPlayerChips() < 0) {
 								System.out.println("플레이어 칩이 0장 이하가 되어 패배하였습니다.");
@@ -211,57 +208,16 @@ public class PokerMain {
 							System.out.println("남은 칩  :  " + method.returnPlayerChips());
 							printHorizontalCards(playerHand);
 							System.out.println();
-							System.out.print("[1] 배팅 [2] 폴드  >>  ");
-							int betnum = sc.nextInt();
-							if (betnum == 1) {
-								while (true) {
-
-									System.out.print("배팅할 칩 장수를 입력해 주세요  >>  ");
-									int bet = sc.nextInt();
-									mp3.play(list.get(1).getpath()); //음악
-									method.pot(bet);
-									if (method.returnPlayerChips() < 0) {
-										System.out.println("플레이어 칩이 0장 이하가 되어 패배하였습니다.");
-										break;
-									}
-									System.out.println();
-									System.out.println("======추가 카드 딜링======");
-
-									playerHand.clear();
-									dealerHand.clear();
-									playerHand.addAll(method.dealPlayer1());
-									dealerHand.addAll(method.dealDealer1());
-
-									
-									
-									printHorizontalCards(dealerHand);
-									
-									System.out.println("\t▲▲▲▲▲▲▲▲▲▲▲ DEALER ▲▲▲▲▲▲▲▲▲▲");
-									System.out.println("");
-									System.out.println("\t┌\t\t\t   ┐");
-									System.out.println("");
-									System.out.println("");
-									System.out.println("\t 라운드  :  " + round + "       pot : "
-											+ method.pot(0) );
-									System.out.println("");
-									System.out.println("");
-									System.out.println("\t└\t\t\t   ┘");
-									System.out.println("");
-									System.out.println("\t▼▼▼▼▼▼▼▼▼▼▼ PLAYER ▼▼▼▼▼▼▼▼▼▼▼");
-									System.out.println("");
-									
-									System.out.println("남은 칩  :  " + method.returnPlayerChips());
-									printHorizontalCards(playerHand);
-									System.out.println();
-									System.out.print("[1] 배팅 [2] 폴드  >>  ");
-									int betnum2 = sc.nextInt();
-									
-									if (betnum2 == 1) {
+							while (true) {
+								System.out.print("[1] 배팅 [2] 폴드  >>  ");
+								int betnum = sc.nextInt();
+								if (betnum == 1) {
+									while (true) {
 
 										System.out.print("배팅할 칩 장수를 입력해 주세요  >>  ");
-										int bet2 = sc.nextInt();
-										mp3.play(list.get(1).getpath());
-										method.pot(bet2);
+										int bet = sc.nextInt();
+										mp3.play(list.get(1).getpath()); // 음악
+										method.pot(bet);
 										if (method.returnPlayerChips() < 0) {
 											System.out.println("플레이어 칩이 0장 이하가 되어 패배하였습니다.");
 											break;
@@ -274,96 +230,140 @@ public class PokerMain {
 										playerHand.addAll(method.dealPlayer1());
 										dealerHand.addAll(method.dealDealer1());
 
-										
 										printHorizontalCards(dealerHand);
-										
+
 										System.out.println("\t▲▲▲▲▲▲▲▲▲▲▲ DEALER ▲▲▲▲▲▲▲▲▲▲");
 										System.out.println("");
 										System.out.println("\t┌\t\t\t   ┐");
 										System.out.println("");
 										System.out.println("");
-										System.out.println("\t 라운드  :  " + round + "       pot : "
-												+ method.pot(0) );
+										System.out.println("\t 라운드  :  " + round + "       pot : " + method.pot(0));
 										System.out.println("");
 										System.out.println("");
 										System.out.println("\t└\t\t\t   ┘");
 										System.out.println("");
 										System.out.println("\t▼▼▼▼▼▼▼▼▼▼▼ PLAYER ▼▼▼▼▼▼▼▼▼▼▼");
 										System.out.println("");
-										
+
 										System.out.println("남은 칩  :  " + method.returnPlayerChips());
 										printHorizontalCards(playerHand);
 										System.out.println();
+										while (true) {
+											System.out.print("[1] 배팅 [2] 폴드  >>  ");
+											int betnum2 = sc.nextInt();
 
-										System.out.println("딜러  :  " + method.checkTree(dealerHand));
-										System.out.println("플레이어  :  " + method.checkTree(playerHand));
+											if (betnum2 == 1) {
 
-										int result = method.result(method.checkTree(playerHand),
-												method.checkTree(dealerHand));
+												System.out.print("배팅할 칩 장수를 입력해 주세요  >>  ");
+												int bet2 = sc.nextInt();
+												mp3.play(list.get(1).getpath());
+												method.pot(bet2);
+												if (method.returnPlayerChips() < 0) {
+													System.out.println("플레이어 칩이 0장 이하가 되어 패배하였습니다.");
+													break;
+												}
+												System.out.println();
+												System.out.println("======추가 카드 딜링======");
 
-										if (result == 1) {
-											System.out.println("플레이어 승리!");
-											mp3.play(list.get(5).getpath());
-											mp3.play(list.get(6).getpath());
-											method.playerWin();
-											method.potReset();
-											method.handClear();
-											playerHand.clear();
-											dealerHand.clear();
-										} else if (result == 2) {
-											System.out.println("플레이어 패배...");
-											method.dealerWin();
-											method.potReset();
-											method.handClear();
-											playerHand.clear();
-											dealerHand.clear();
-										} else {
-											System.out.println("무승부");
-											System.out.println("pot의 칩은 다음 승부로 이전됩니다.");
-											method.handClear();
-											playerHand.clear();
-											dealerHand.clear();
-											if (round == 5) {
-												System.out.println("마지막 라운드이므로 pot의 칩은 균등 분배됩니다.");
-												playerChip += (method.pot(0) / 2) + (method.pot(0) % 2);
-												dealerChip += (method.pot(0) / 2) + (method.pot(0) % 2);
+												playerHand.clear();
+												dealerHand.clear();
+												playerHand.addAll(method.dealPlayer1());
+												dealerHand.addAll(method.dealDealer1());
+
+												printHorizontalCards(dealerHand);
+
+												System.out.println("\t▲▲▲▲▲▲▲▲▲▲▲ DEALER ▲▲▲▲▲▲▲▲▲▲");
+												System.out.println("");
+												System.out.println("\t┌\t\t\t   ┐");
+												System.out.println("");
+												System.out.println("");
+												System.out.println("\t 라운드  :  " + round + "       pot : " + method.pot(0));
+												System.out.println("");
+												System.out.println("");
+												System.out.println("\t└\t\t\t   ┘");
+												System.out.println("");
+												System.out.println("\t▼▼▼▼▼▼▼▼▼▼▼ PLAYER ▼▼▼▼▼▼▼▼▼▼▼");
+												System.out.println("");
+
+												System.out.println("남은 칩  :  " + method.returnPlayerChips());
+												printHorizontalCards(playerHand);
+												System.out.println();
+
+												System.out.println("딜러  :  " + method.checkTree(dealerHand));
+												System.out.println("플레이어  :  " + method.checkTree(playerHand));
+
+												int result = method.result(method.checkTree(playerHand),
+														method.checkTree(dealerHand));
+
+												if (result == 1) {
+													System.out.println("플레이어 승리!");
+													mp3.play(list.get(5).getpath());
+													mp3.play(list.get(6).getpath());
+													method.playerWin();
+													method.potReset();
+													method.handClear();
+													playerHand.clear();
+													dealerHand.clear();
+												} else if (result == 2) {
+													System.out.println("플레이어 패배...");
+													method.dealerWin();
+													method.potReset();
+													method.handClear();
+													playerHand.clear();
+													dealerHand.clear();
+												} else {
+													System.out.println("무승부");
+													System.out.println("pot의 칩은 다음 승부로 이전됩니다.");
+													method.handClear();
+													playerHand.clear();
+													dealerHand.clear();
+													if (round == 5) {
+														System.out.println("마지막 라운드이므로 pot의 칩은 균등 분배됩니다.");
+														playerChip += (method.pot(0) / 2) + (method.pot(0) % 2);
+														dealerChip += (method.pot(0) / 2) + (method.pot(0) % 2);
+														method.potReset();
+														method.handClear();
+														playerHand.clear();
+														dealerHand.clear();
+													}
+												}
+
+												break;
+
+											} else if (betnum2 == 2) {
+												System.out.println("pot의 칩을 잃으셨습니다....");
+												System.out.println("남은 칩  :  " + method.returnPlayerChips());
 												method.potReset();
 												method.handClear();
 												playerHand.clear();
 												dealerHand.clear();
+												break;
+											} else {
+												System.out.println("올바른 수를 입력해 주세요");
 											}
+
 										}
 
 										break;
-
-									} else if (betnum2 == 2) {
-										System.out.println("pot의 칩을 잃으셨습니다....");
-										System.out.println("남은 칩  :  " + method.returnPlayerChips());
-										method.potReset();
-										method.handClear();
-										playerHand.clear();
-										dealerHand.clear();
-										break;
-									} else {
-										System.out.println("올바른 수를 입력해 주세요");
-
 									}
 
+									break;
+								} else if (betnum == 2) {
+									System.out.println("pot의 칩을 잃으셨습니다....");
+									System.out.println("남은 칩  :  " + method.returnPlayerChips());
+									method.potReset();
+									method.handClear();
+									playerHand.clear();
+									dealerHand.clear();
+									break;
+								} else {
+									System.out.println("올바른 수를 입력해 주세요");
 								}
-
-							} else if (betnum == 2) {
-								System.out.println("pot의 칩을 잃으셨습니다....");
-								System.out.println("남은 칩  :  " + method.returnPlayerChips());
-								method.potReset();
-								method.handClear();
-								playerHand.clear();
-								dealerHand.clear();
-							} else {
-								System.out.println("올바른 수를 입력해 주세요");
 							}
 
 							if (round == 5) {
 								System.out.println("랭킹 서버에 점수가 등록됩니다.");
+								System.out.println("남은 칩  :  " + method.returnPlayerChips());
 								playerdto = new PokerPlayer(id, pw, null, method.returnPlayerChips());
 								pokerDAO.upload(playerdto);
 								round = 0;
@@ -422,7 +422,6 @@ public class PokerMain {
 
 			} else if (num == 4) {
 
-			
 				System.out.println("종료");
 				mp3.stop();
 
@@ -430,7 +429,6 @@ public class PokerMain {
 			} else {
 				System.out.println("다시 입력해주세요");
 			}
-		
 
 		}
 
