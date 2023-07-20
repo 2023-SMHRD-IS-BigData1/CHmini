@@ -256,6 +256,7 @@ public class PokerMain {
 
 							if (round == 5) {
 								System.out.println("랭킹 서버에 점수가 등록됩니다.");
+								playerdto = new PokerPlayer(id, pw, null, method.returnPlayerChips());
 								pokerDAO.upload(playerdto);
 								round = 0;
 								break;

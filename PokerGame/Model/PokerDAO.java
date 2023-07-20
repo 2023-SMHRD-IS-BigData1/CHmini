@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Controller.Method;
+
 public class PokerDAO {
 	// 전역변수 설정
 	Connection conn = null;
